@@ -19,7 +19,7 @@ resort("Pestana Troia Eco-Resort & Residences", precomedio, localizacao['Tróia'
 
 resort("Pedras do Mar Resort & Spa", 260, localizacao['Fenais da Luz', 'Açores'], [portuguesa, internacional], 5, 8.8, ['atividades desportivas', internet, estacionamento, piscina_interior, piscina, 'Spa e centro de bem-estar', 'Centro Fitness'], ['campo de golfe', igreja, lago, santuario, ponte])
 resort("Quinta das Rosas Villas", precomedio, localizacao['Ribeira Grande', 'Açores'], [portuguesa], -, 9.4, ['atividades desportivas', internet, estacionamento, piscina], [ponte, igreja, lago, santuario, ermida, fumarolas, mar, montanha, 'campo de golfe'])
-resort("aldeia das Adegas", precomedio, localizacao['São Roque do Pico', 'Açores'], [portuguesa], 4, 8.9, [internet, estacionamento], [])
+resort("Aldeia das Adegas", precomedio, localizacao['São Roque do Pico', 'Açores'], [portuguesa], 4, 8.9, [internet, estacionamento], [])
 resort("Aldeia da Fonte Hotel", precomedio, localizacao['Lajes do Pico', 'Açores'], [portuguesa, internacional], 4, 8.4, ['animais admitidos', 'atividades desportivas', internet, estacionamento, piscina, 'Centro Fitness'], [mar, praia])
 resort("Caparica Azores Ecolodge", 345, localizacao['Biscoitos', 'Açores'], [portuguesa], -, 9.2, ['atividades desportivas', internet, estacionamento, piscina], [mar, montanha, praia])
 
