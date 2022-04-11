@@ -1,2 +1,4 @@
-procura_array(X, [X|_]).
-procura_array(X, [_|R]):- procura_array(X, R).
+%perfil(zona,perfil)
+
+membro(X, [X|_]).
+membro(X, [_|R]):- membro(X, R).
