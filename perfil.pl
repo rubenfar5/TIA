@@ -34,8 +34,6 @@ preferenciaDesporto(L,A):- (membro(desportista, L), procuraDesporto(A)).
 
 atividadesHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaDesporto(L,A)),K), print(K).
 
-%estou aqui 
-
 
 
 
