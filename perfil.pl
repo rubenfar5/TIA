@@ -15,3 +15,9 @@ decisaoPreferencia(L,U):- (membro(praia, L), procuraPraia(U)); (membro(natureza,
     					
 
 sugestaoHotelPraia(L):- setof(Y,(resort(Y,_,_,_,_,_,_,U), decisaoPreferencia(L,U)),K), print(K).  
+
+procuraAnimais(L):- membro('animais admitidos',L).
+
+preferenciaAnimal(L,A):- (membro(sim, L), procuraAnimais(A)).
+
+animaisHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaAnimal(L,A)),K), print(K).
