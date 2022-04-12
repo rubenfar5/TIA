@@ -4,11 +4,12 @@ Trabalho feito a pensar no 20, equipa competente e equilibrada emocionalmente
 Bem haja!
 
 Perguntas TIA
-- Qual é a sua zona destino? (Algarve, Alentejo, Açores, Madeira, Centro, Norte)
+- Qual é a sua zona destino? (Algarve, Alentejo, Açores, Madeira, Centro, Norte) - DONE
 - É fã de gastronomia? 
 - É praticante de desporto?
-- Natureza, cultura ou praia? Slecione 2 no máximo
--  Tenciona levar animais de estimaçao
+- Natureza, cultura ou praia? Slecione 2 no máximo - DONE
+- Tenciona levar animais de estimaçao
+- Juntar tudo
 
 
 DIA 12/04 -> BASE DADOS CRIAR FUNÇOES DE PESQUISA
