@@ -15,3 +15,15 @@ decisaoPreferencia(L,U):- (membro(praia, L), procuraPraia(U)); (membro(natureza,
     					
 
 sugestaoHotelPraia(L):- setof(Y,(resort(Y,_,_,_,_,_,_,U), decisaoPreferencia(L,U)),K), print(K).  
+
+procuraAnimais(L):- membro('animais admitidos',L).
+
+preferenciaAnimal(L,A):- (membro(sim, L), procuraAnimais(A)).
+
+animaisHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaAnimal(L,A)),K), print(K).
+
+procuraComida(L):- membro(europeia,L); membro(italiana,L); membro(mediterranica,L); membro(espanhola,L); membro('local',L); membro(internacional,L); membro(latino-americana,L); membro(marisco,L); membro(steakhouse,L); membro(pizza,L); membro(asiatica,L); membro(saudavel,L); membro(churrasco,L); membro(brasileira,L); membro(inglesa,L).
+
+preferenciaComida(L,A):- (membro(fa, L), procuraComida(A)).
+
+gastronomiaHotel(L):- setof(Y,(resort(Y,_,_,A,_,_,_,_), preferenciaComida(L,A)),K), print(K).
