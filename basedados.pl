@@ -64,5 +64,3 @@ resort("Vale d'Oliveiras Quinta Resort & SPA", 265, ['Carvoeiro','Algarve', 1], 
 resort("Rocha Brava Village Resort", 202, ['Carvoeiro','Algarve', 1], [portuguesa, internacional], 4, 8.5, [piscina, estacionamento, internet, babysitting, 'campo de ténis', 'Spa e centro de bem-estar', minigolfe, minimercado, 'atividades desportivas'], [praia, equitação, pesca, 'campo de golfe', snorkelling]).
 resort("Monte Santo Resort", 341, ['Carvoeiro','Algarve', 1], [portuguesa], 5, 8.6, [piscina, 'Transfer aeroporto', 'Spa e centro de bem-estar', babysitting], ['campo de golfe', praia, 'parque aquatico', equitação, mergulho, snorkelling, windsurf, canoagem]).
 resort("Penina Hotel & Golf Resort", 322, ['Portimão', 'Algarve', 1], [internacional, italiana, mediterranica, portuguesa], 5, 8.1, [piscina, 'Transfer aeroporto', 'praia privada', internet, babysitting], ['campo de golfe', praia]).
-
-europeia, italiana, mediterranica, espanhola, 'local', internacional, latino-americana, marisco, steakhouse, pizza
