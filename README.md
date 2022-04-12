@@ -8,7 +8,7 @@ Perguntas TIA
 - É fã de gastronomia? 
 - É praticante de desporto?
 - Natureza, cultura ou praia? Slecione 2 no máximo - DONE
-- Tenciona levar animais de estimaçao
+- Tenciona levar animais de estimaçao - DONE
 - Juntar tudo
 
 
