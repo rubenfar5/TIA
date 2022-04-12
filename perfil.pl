@@ -27,3 +27,13 @@ procuraComida(L):- membro(europeia,L); membro(italiana,L); membro(mediterranica,
 preferenciaComida(L,A):- (membro(fa, L), procuraComida(A)).
 
 gastronomiaHotel(L):- setof(Y,(resort(Y,_,_,A,_,_,_,_), preferenciaComida(L,A)),K), print(K).
+
+procuraDesporto(L):- membro('atividades desportivas',L); membro('centro fitness',L).
+
+preferenciaDesporto(L,A):- (membro(desportista, L), procuraDesporto(A)).
+
+atividadesHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaDesporto(L,A)),K), print(K).
+
+
+
+
