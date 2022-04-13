@@ -103,7 +103,7 @@ preferenciaDesporto(L,A):- (membro(desportista, L), procuraDesporto(A)); (membro
 atividadesHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaDesporto(L,A)),K), print(K).
 
 
-verResort(N,G,D,PCN,A):- setof(Y,(resort(Y,_,L,G1,_,_,AD,PCN1), membro(N,L), decisaoPreferencia(PCN,PCN1),  preferenciaAnimal(A,AD), preferenciaComida(G,G1), preferenciaDesporto(D,AD)),K), print(K).
+verResort(N,G,D,PCN,A):- findall(Y,(resort(Y,_,L,G1,_,_,AD,PCN1), membro(N,L), decisaoPreferencia(PCN,PCN1),  preferenciaAnimal(A,AD), preferenciaComida(G,G1), preferenciaDesporto(D,AD)),K), print(setof(K)).
 
 perfil(perfil_1,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, cultura], [animais]).
 perfil(perfil_2,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, cultura], [nao_animais]).

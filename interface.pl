@@ -3,32 +3,28 @@
 
 
 menu:- 
-    nl, 
-    nl,
-    write('---------------------------------'), 
     nl,
     write('Bem vindo, existimos para lhe sugerir o melhor resort para si'), 
     nl,
+    nl,
     write('Antes de iniciar, indique-nos o seu nome:'), 
+    nl,
     nl,
     read(X), 
     nl,
     write('---------------------------------'), 
     nl, 
     nl,
-    write('---------------------------------'), 
-    nl,
-    write('E um gosto poder ajudar, '),
-    write(X), 
+    write('E um gosto poder ajudar, '), write(X), 
     nl, 
+    nl,
     write('Para descobrir qual o melhor destino de resort para si precisamos que responda a algumas perguntas'),
     nl, 
-    write('---------------------------------'), 
-    nl,
     nl,
     write('---------------------------------'),    
     nl,
     write('-> Menu: '),
+    nl,
     nl,
     write('> 1 - Iniciar'),
     nl,
@@ -43,13 +39,16 @@ menu:-
 
 questao1:- 
     write('/////////////////////////////////////'), 
+    nl,
+    nl,
     write('-> Qual a zona de destino pretendida?'),
+    nl,
     nl,
     write('> 1 - Algarve'),
     nl,
     write('> 2 - Alentejo'),
     nl,
-    write('> 3 - Açores'),
+    write('> 3 - Acores'),
     nl,
     write('> 4 - Madeira'),
     nl,
@@ -70,8 +69,11 @@ questao1:-
 
 
 questao2:- 
-    write('/////////////////////////////////////'),
+    write('/////////////////////////////////////'), 
+    nl,
+    nl,
     write('-> E fa de gastronomia?'),
+    nl,
     nl,
     write('> 1 - Sim, gosto de experimentar coisas novas'),
     nl,
@@ -85,8 +87,11 @@ questao2:-
 
 
 questao3:- 
-    write('/////////////////////////////////////'),
+    write('/////////////////////////////////////'), 
+    nl,
+    nl,
     write('-> Tenciona praticar desporto durante a estadia?'),
+    nl,
     nl,
     write('> 1 - Sim, nao passo sem uma boa dose de exercicio'),
     nl,
@@ -100,8 +105,11 @@ questao3:-
 
 
 questao4:- 
-    write('/////////////////////////////////////'),
+    write('/////////////////////////////////////'), 
+    nl,
+    nl,
     write('-> O que prefere? (Selecione 2 opcoes)'),
+    nl,
     nl,
     write('> 1 - Natureza'),
     nl,
@@ -123,8 +131,11 @@ questao4:-
         (R42 == 3), assert(fact(cultura)), questao5).
 
 questao5:- 
-    write('/////////////////////////////////////'),
+    write('/////////////////////////////////////'), 
+    nl,
+    nl,
     write('-> Tem animais de estimacao e esta a pensar leva-los consigo?'),
+    nl,
     nl,
     write('> 1 - Sim, nao largo o meu companheiro por nada'),
     nl,
@@ -143,20 +154,14 @@ sugestao:-
     nl,
     write('***********************************'),
     nl,
-    result.
+    result(X).
 
-mostraResultado(P):- 
-    variavel(R1), 
-    nl,
-    write('O ser perfil e considerado o :'),
-    nl,
-    write(P),
-    nl,
-    nl,
+mostraResultado:- 
+    variavel(R1),
+    variavel(P),
     write('Resorts aconselhados: '),
     perfil(P,R1),
     nl,
     nl,
     retract(variavel(R1)), 
     retract(fact(_)).
-
