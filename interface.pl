@@ -154,11 +154,16 @@ sugestao:-
     nl,
     write('***********************************'),
     nl,
-    result(X).
+    result.
 
-mostraResultado:- 
+mostraResultado(P):- 
     variavel(R1),
-    variavel(P),
+    nl,
+    write('O ser perfil: '),
+    nl,
+    write(P),
+    nl,
+    nl,
     write('Resorts aconselhados: '),
     perfil(P,R1),
     nl,

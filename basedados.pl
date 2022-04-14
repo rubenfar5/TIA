@@ -102,8 +102,20 @@ preferenciaDesporto(L,A):- (membro(desportista, L), procuraDesporto(A)); (membro
 
 atividadesHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaDesporto(L,A)),K), print(K).
 
+toSet(List, Set):- 
+    toSetHelper(List, [], Set).
 
-verResort(N,G,D,PCN,A):- findall(Y,(resort(Y,_,L,G1,_,_,AD,PCN1), membro(N,L), decisaoPreferencia(PCN,PCN1),  preferenciaAnimal(A,AD), preferenciaComida(G,G1), preferenciaDesporto(D,AD)),K), print(setof(K)).
+toSetHelper([], Acc, Acc).
+
+toSetHelper([H|T], Acc, Set):-
+    member(H, Acc),
+    toSetHelper(T, Acc, Set).
+
+toSetHelper([H|T], Acc, Set):-
+    toSetHelper(T, [H|Acc], Set).
+
+verResort(N,G,D,PCN,A):- findall((Y,P,L,E,AV),(resort(Y,P,L,G1,E,AV,AD,PCN1), membro(N,L), decisaoPreferencia(PCN,PCN1),  preferenciaAnimal(A,AD), preferenciaComida(G,G1), preferenciaDesporto(D,AD)), K), toSet(K, Set), print(Set).
+
 
 perfil(perfil_1,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, cultura], [animais]).
 perfil(perfil_2,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, cultura], [nao_animais]).

@@ -5,13 +5,12 @@
 :- op( 300, xfy, or).
 :- op( 500, xfy, and).
 
-result(X):- new_derived_fact(P),             
+result:- new_derived_fact(P),             
    !,
-   write('facto: '), write(P),
+   mostraResultado(P), nl,
    assert(fact(P)),
-   result.    
-
-result(X):- mostraResultado(X).    
+   result.                           
+result:- nl,write( 'Esperemos que goste da recomendacao, disfrute') .             
 
 new_derived_fact(Concl):-
  if Cond then Concl, 
