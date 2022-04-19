@@ -17,8 +17,8 @@ resultado(Class):- findall(A,fact(A),Z), classify(Z,Class), retractall(fact(_)).
 menu :-
     write(
 "
-                  Olá, seja bem vindo!
-                  Será que a ilha é o destino ideal para si? Vamos verificar.
+                  Ola, seja bem vindo!
+                  Sera que a ilha e o destino ideal para si? Vamos verificar.
                   Seja bem-vindo ao sistema de recomendacao! Esperamos corresponder as suas expetativas *_*
 
 "),nl,
@@ -50,7 +50,7 @@ ________________________________________________________________________________
     write(
 "____________________________________________________________________________________________________
  
-                    Tenciona praticar desporto durante as suas férias?
+                    Tenciona praticar desporto durante as suas ferias?
 
                     1- Sim
                     2- Nao
@@ -67,7 +67,7 @@ ________________________________________________________________________________
     write(
 "____________________________________________________________________________________________________
  
-                    Qual a sua preferência? 
+                    Qual a sua preferencia? 
 
                     1- Natureza
                     2- Praia
