@@ -5,8 +5,8 @@
 
 % the goal is to classify 
 learn_rules:-
-	learn(ilhas),  % negative examples
-	learn(continente), % positive examples
+	learn(sim),  % negative examples
+	learn(nao), % positive examples
         % save new rules:
 	tell('destino_ifthen.pl'),
 	listing(<==),
@@ -18,7 +18,7 @@ menu :-
     write(
 "
                   Olá, seja bem vindo!
-                  Tem dúvidas entre passar as suas férias no Continente ou nas Ilhas?
+                  Será que a ilha é o destino ideal para si? Vamos verificar.
                   Seja bem-vindo ao sistema de recomendacao! Esperamos corresponder as suas expetativas *_*
 
 "),nl,
@@ -143,7 +143,7 @@ write("_________________________________________________________________________
 
 resultado(C),
 
- write('Para o seu perfil aconselhamos: '), write(C),nl,nl,
+ write('Para o seu perfil aconselhamos ilhas: '), write(C),nl,nl,
 
  
 
