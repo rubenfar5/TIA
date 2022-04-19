@@ -86,7 +86,7 @@ ________________________________________________________________________________
     write(
 "____________________________________________________________________________________________________
 
-                    Qual o seu orçamento (por noite) para estas ferias?
+                    Qual o seu orcamento (por noite) para estas ferias?
 
                     1- menos de 200 euros
                     2- 201 a 400 euros
