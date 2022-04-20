@@ -5,8 +5,8 @@
 
 % the goal is to classify 
 learn_rules:-
-	learn(sim),  % negative examples
-	learn(nao), % positive examples
+	learn(nao),  % negative examples
+	learn(sim), % positive examples
         % save new rules:
 	tell('destino_ifthen.pl'),
 	listing(<==),
