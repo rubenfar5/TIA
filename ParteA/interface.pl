@@ -1,159 +1,115 @@
 :-dynamic(fact/2),
 [forward, basedados, baseconhecimento].
 
-
 menu:- 
-    nl,
-    write('Bem vindo, existimos para lhe sugerir o melhor resort para si'), 
-    nl,
-    nl,
-    write('Antes de iniciar, indique-nos o seu nome:'), 
-    nl,
-    nl,
-    read(X), 
-    nl,
-    write('---------------------------------'), 
-    nl, 
-    nl,
-    write('E um gosto poder ajudar, '), write(X), 
-    nl, 
-    nl,
-    write('Para descobrir qual o melhor destino de resort para si precisamos que responda a algumas perguntas'),
-    nl, 
-    nl,
-    write('---------------------------------'),    
-    nl,
-    write('-> Menu: '),
-    nl,
-    nl,
-    write('> 1 - Iniciar'),
-    nl,
-    write('> 2 - Sair'),
-    nl,
-    nl,
-    read(Y),
-    (
-        (Y == 1), questao1;
-        (Y == 2), write('Foi um prazer ajuda-lo, volte sempre'), halt).
+ write(
+"
+                  Ola, seja bem vindo!
+                  Existimos para lhe sugerir o melhor resort para si.
 
+"),nl,
+  write(
+"____________________________________________________________________________________________________
+ 
+                    Antes de iniciar indique o seu nome:
+___________________________________________________________________________________________________"),nl,nl,
+    read(X), nl, 
+   write(
+"____________________________________________________________________________________________________
+ 
+                  E um gosto poder ajudar,"), write(X),
+ write(       
+" 
+                  Para descobrir qual o melhor destino de resort para si precisamos que responda a algumas perguntas
+__________________________________________________________________________________________________________________________________
 
-questao1:- 
-    write('/////////////////////////////////////'), 
-    nl,
-    nl,
-    write('-> Qual a zona de destino pretendida?'),
-    nl,
-    nl,
-    write('> 1 - Algarve'),
-    nl,
-    write('> 2 - Alentejo'),
-    nl,
-    write('> 3 - Acores'),
-    nl,
-    write('> 4 - Madeira'),
-    nl,
-    write('> 5 - Centro'),
-    nl,
-    write('> 6 - Norte'),
-    nl,
-    nl,
-    read(R1),
-    (
-        (R1 == 1), assert(variavel('Algarve')), questao2;
-        (R1 == 2), assert(variavel('Alentejo')), questao2;
-        (R1 == 3), assert(variavel('Açores')), questao2;
-        (R1 == 4), assert(variavel('Madeira')), questao2;
-        (R1 == 5), assert(variavel('Centro')), questao2;
-        (R1 == 6), assert(variavel('Norte')), questao2).
+__________________________________________________________________________________________________________________________________
 
+                    Qual a zona destino pretendida?
 
+                    1- Algarve
+                    2- Alentejo
+                    3- Acores
+                    4- Madeira
+                    5- Centro
+                    6- Norte
 
-questao2:- 
-    write('/////////////////////////////////////'), 
-    nl,
-    nl,
-    write('-> E fa de gastronomia?'),
-    nl,
-    nl,
-    write('> 1 - Sim, gosto de experimentar coisas novas'),
-    nl,
-    write('> 2 - Nao, prefiro comida portuguesa'),
-    nl,
-    nl,
-    read(R2),
-    (
-        (R2 == 1), assert(fact(fa_gastronomia)), questao3;
-        (R2 == 2), assert(fact(nao_fa_gastronomia)), questao3).
+                    0- Sair
 
+____________________________________________________________________________________________________"),nl,nl,
+ read(R1),
+        ((R1== 0), write('Foi um prazer ajuda-lo, volte sempre'), halt;
+        (R1 == 1), assert(variavel('Algarve'));
+        (R1 == 2), assert(variavel('Alentejo'));
+        (R1 == 3), assert(variavel('Açores'));
+        (R1 == 4), assert(variavel('Madeira'));
+        (R1 == 4), assert(variavel('Centro'));
+        (R1 == 5), assert(variavel('Norte'))), nl, 
 
-questao3:- 
-    write('/////////////////////////////////////'), 
-    nl,
-    nl,
-    write('-> Tenciona praticar desporto durante a estadia?'),
-    nl,
-    nl,
-    write('> 1 - Sim, nao passo sem uma boa dose de exercicio'),
-    nl,
-    write('> 2 - Nao, prefiro descansar'),
-    nl,
-    nl,
-    read(R3),
-    (
-        (R3 == 1), assert(fact(desportista)), questao4;
-        (R3 == 2), assert(fact(nao_desportista)), questao4).
+write(
+"____________________________________________________________________________________________________
 
+                    E fa de gastronomia?
 
-questao4:- 
-    write('/////////////////////////////////////'), 
-    nl,
-    nl,
-    write('-> O que prefere? (Selecione 2 opcoes)'),
-    nl,
-    nl,
-    write('> 1 - Natureza'),
-    nl,
-    write('> 2 - Praia'),
-    nl,
-    write('> 3 - Cultura'),
-    nl,
-    nl,
-    read(R41),
-    read(R42),
-    (
-        (R41 == 1), assert(fact(natureza));
+                    1- Sim, gosto de experimentar coisas novas
+                    2- Nao, prefiro comida portuguesa
+
+____________________________________________________________________________________________________"),nl,nl,
+ read(R2),
+        ((R2 == 1), assert(fact(fa_gastronomia));
+        (R2 == 2), assert(fact(nao_fa_gastronomia))), nl, 
+
+write(
+"____________________________________________________________________________________________________
+
+                    Tenciona praticar desporto durante a estadia?
+
+                    1 - Sim, nao passo sem uma boa dose de exercicio
+                    2 - Nao, prefiro descansar
+
+____________________________________________________________________________________________________"),nl,nl,
+ read(R3),
+        ((R3 == 1), assert(fact(desportista));
+        (R3 == 2), assert(fact(nao_desportista))), nl, 
+
+write(
+"____________________________________________________________________________________________________
+
+                   O que prefere? (Selecione 2 opcoes)
+
+                    1 - Natureza
+                    2 - Praia
+                    3 - Cultura
+
+____________________________________________________________________________________________________"),nl,nl,
+ read(R41),
+  read(R42),
+        ((R41 == 1), assert(fact(natureza));
         (R41 == 2), assert(fact(praia));
-        (R41 == 3), assert(fact(cultura))
-    ),
-    (
-        (R42 == 1), assert(fact(natureza)), questao5;
-        (R42 == 2), assert(fact(praia)), questao5;
-        (R42 == 3), assert(fact(cultura)), questao5).
+        (R41 == 3), assert(fact(cultura))), nl, 
 
-questao5:- 
-    write('/////////////////////////////////////'), 
-    nl,
-    nl,
-    write('-> Tem animais de estimacao e esta a pensar leva-los consigo?'),
-    nl,
-    nl,
-    write('> 1 - Sim, nao largo o meu companheiro por nada'),
-    nl,
-    write('> 2 - Nao, nao tenho animal de estimacao / tenho onde o deixar'),
-    nl,
-    nl,
-    read(R5),
-    (
-        (R5 == 1), assert(fact(animais)), sugestao;
-        (R5 == 2), assert(fact(nao_animais)), sugestao).
+        ((R42 == 1), assert(fact(natureza));
+        (R42 == 2), assert(fact(praia));
+        (R42 == 3), assert(fact(cultura))), nl, 
 
-sugestao:- 
-    write('***********************************'),
-    nl,
-    write(' Resultado obtido'),
-    nl,
-    write('***********************************'),
-    nl,
+write(
+"____________________________________________________________________________________________________
+
+                   Tem animais de estimacao e esta a pensar leva-los consigo?
+
+                    1 - Sim, nao largo o meu companheiro por nada
+                    2 - Nao, nao tenho animal de estimacao / tenho onde o deixar
+
+____________________________________________________________________________________________________"),nl,nl,
+ read(R5),
+        ((R5 == 1),  assert(fact(animais));
+        (R5 == 2), assert(fact(nao_animais))), nl,
+
+write(
+"____________________________________________________________________________________________________
+
+                   Resultado Obtido:
+____________________________________________________________________________________________________"),nl,nl,
     result.
 
 mostraResultado(P):- 
