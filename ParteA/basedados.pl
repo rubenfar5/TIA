@@ -102,6 +102,8 @@ preferenciaDesporto(L,A):- (membro(desportista, L), procuraDesporto(A)); (membro
 
 atividadesHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaDesporto(L,A)),K), print(K).
 
+%Eliminar Repetidos
+
 toSet(List, Set):- 
     toSetHelper(List, [], Set).
 
@@ -141,3 +143,4 @@ perfil(perfil_21,L):- verResort(L, [nao_fa_gastronomia], [nao_desportista], [nat
 perfil(perfil_22,L):- verResort(L, [nao_fa_gastronomia], [nao_desportista], [natureza, praia], [nao_animais]).
 perfil(perfil_23,L):- verResort(L, [nao_fa_gastronomia], [nao_desportista], [praia, cultura], [animais]).
 perfil(perfil_24,L):- verResort(L, [nao_fa_gastronomia], [nao_desportista], [praia, cultura], [nao_animais]).
+
