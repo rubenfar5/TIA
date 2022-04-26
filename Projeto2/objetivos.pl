@@ -47,6 +47,7 @@ distancia_percurso([X,Y|Z], Soma):- distancia(Y,X, S1),
 
 /* trajeto */
 trajeto(X,Y,T):- caminho(X,Y,T), melhor(X,Y,T).
+
 melhor(X,Y,T):- solucao(T,MT,_,_),!,
     \+ otimizado(X,Y,MT).
 
