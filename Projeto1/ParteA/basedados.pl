@@ -64,6 +64,7 @@ membro(X, [X|_]).
 membro(X, [_|R]):- membro(X, R).
 
 
+/* procurar resorts tendo em conta a preferencia por cultura/praia/natureza */
 procuraPraia(L):- membro(praia,L); membro(marina,L).
 
 procuraNatureza(L):- membro(montanha,L); membro(rio,L); membro(mar,L); membro(lago,L); membro(miradouro,L).
@@ -75,11 +76,11 @@ decisaoPreferencia(L,U):- (membro(praia, L), procuraPraia(U)); (membro(natureza,
 sugestaoHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,_,U), decisaoPreferencia(L,U)),K), print(K).
 
 
-
+/* procurar resorts por regiao */
 listarHoteisRegiao(N):- setof(Y,(resort(Y,_,L,_,_,_,_,_), membro(N,L)),K), print(K).
 
 
-
+/* procura resorts pela disponibilidade de aceitar animais ou nao */
 procuraAnimais(L):- membro('animais admitidos',L).
 
 preferenciaAnimal(L,A):- (membro(animais, L), procuraAnimais(A)); (membro(nao_animais,L), true).
@@ -87,7 +88,7 @@ preferenciaAnimal(L,A):- (membro(animais, L), procuraAnimais(A)); (membro(nao_an
 animaisHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaAnimal(L,A)),K), print(K).
 
 
-
+/* procura resorts tendo em conta se é fã de gastronomia ou nao */
 procuraComida(L):- membro(europeia,L); membro(italiana,L); membro(mediterranica,L); membro(espanhola,L); membro('local',L); membro(internacional,L); membro(latino-americana,L); membro(marisco,L); membro(steakhouse,L); membro(pizza,L); membro(asiatica,L); membro(saudavel,L); membro(churrasco,L); membro(brasileira,L); membro(inglesa,L).
 
 preferenciaComida(L,A):- (membro(fa_gastronomia, L), procuraComida(A)); (membro(nao_fa_gastronomia,L), true).
@@ -95,15 +96,16 @@ preferenciaComida(L,A):- (membro(fa_gastronomia, L), procuraComida(A)); (membro(
 gastronomiaHotel(L):- setof(Y,(resort(Y,_,_,A,_,_,_,_), preferenciaComida(L,A)),K), print(K).
 
 
-
+/* procura resorts tendo em conta a disponibilidade de atividades desportivas */
 procuraDesporto(L):- membro('atividades desportivas',L); membro('centro fitness',L).
 
 preferenciaDesporto(L,A):- (membro(desportista, L), procuraDesporto(A)); (membro(nao_desportista,L), true).
 
 atividadesHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaDesporto(L,A)),K), print(K).
 
-%Eliminar Repetidos
 
+
+/* Eliminar repetidos */
 toSet(List, Set):- 
     toSetHelper(List, [], Set).
 
@@ -116,9 +118,11 @@ toSetHelper([H|T], Acc, Set):-
 toSetHelper([H|T], Acc, Set):-
     toSetHelper(T, [H|Acc], Set).
 
+
+/* Encontrar resorts adequados para as escolhas do utilizador */ 
 verResort(N,G,D,PCN,A):- findall((Y,P,L,E,AV),(resort(Y,P,L,G1,E,AV,AD,PCN1), membro(N,L), decisaoPreferencia(PCN,PCN1),  preferenciaAnimal(A,AD), preferenciaComida(G,G1), preferenciaDesporto(D,AD)), K), toSet(K, Set), print(Set).
 
-
+/* chama função de procura tendo em conta o perfil do utilizador */ 
 perfil(perfil_1,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, cultura], [animais]).
 perfil(perfil_2,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, cultura], [nao_animais]).
 perfil(perfil_3,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, praia], [animais]).

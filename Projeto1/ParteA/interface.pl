@@ -50,9 +50,12 @@ write(
                     1- Sim, gosto de experimentar coisas novas
                     2- Nao, prefiro comida portuguesa
 
+                    0- Sair
+
 __________________________________________________________________________________________________________________________________"),nl,nl,
  read(R2),
-        ((R2 == 1), assert(fact(fa_gastronomia));
+        ((R2== 0), write('Foi um prazer ajuda-lo, volte sempre'), halt;
+        (R2 == 1), assert(fact(fa_gastronomia));
         (R2 == 2), assert(fact(nao_fa_gastronomia))), nl, 
 
 write(
@@ -63,9 +66,12 @@ write(
                     1 - Sim, nao passo sem uma boa dose de exercicio
                     2 - Nao, prefiro descansar
 
+                    0- Sair
+
 __________________________________________________________________________________________________________________________________"),nl,nl,
  read(R3),
-        ((R3 == 1), assert(fact(desportista));
+        ((R3== 0), write('Foi um prazer ajuda-lo, volte sempre'), halt;
+        (R3 == 1), assert(fact(desportista));
         (R3 == 2), assert(fact(nao_desportista))), nl, 
 
 write(
@@ -77,14 +83,18 @@ write(
                     2 - Praia
                     3 - Cultura
 
+                    0- Sair
+
 __________________________________________________________________________________________________________________________________"),nl,nl,
  read(R41),
   read(R42),
-        ((R41 == 1), assert(fact(natureza));
+        ((R41== 0), write('Foi um prazer ajuda-lo, volte sempre'), halt;
+        (R41 == 1), assert(fact(natureza));
         (R41 == 2), assert(fact(praia));
         (R41 == 3), assert(fact(cultura))), nl, 
 
-        ((R42 == 1), assert(fact(natureza));
+        ((R42== 0), write('Foi um prazer ajuda-lo, volte sempre'), halt;
+        (R42 == 1), assert(fact(natureza));
         (R42 == 2), assert(fact(praia));
         (R42 == 3), assert(fact(cultura))), nl, 
 
@@ -96,9 +106,12 @@ write(
                     1 - Sim, nao largo o meu companheiro por nada
                     2 - Nao, nao tenho animal de estimacao / tenho onde o deixar
 
+                    0- Sair
+
 __________________________________________________________________________________________________________________________________"),nl,nl,
  read(R5),
-        ((R5 == 1),  assert(fact(animais));
+        ((R5== 0), write('Foi um prazer ajuda-lo, volte sempre'), halt;
+        (R5 == 1),  assert(fact(animais));
         (R5 == 2), assert(fact(nao_animais))), nl,
 
 write(
@@ -124,6 +137,8 @@ mostraResultado(P):-
     nl,
     retract(variavel(R1)), 
     retract(fact(_)).
+
+
 
 %reposta([]):- write('').
 
