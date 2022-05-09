@@ -1,4 +1,5 @@
-:-dynamic(fact/1), [baseconhecimento].
+:-dynamic(fact/1), 
+[baseconhecimento].
 
 /*  Menor custo < 450 */
 
@@ -20,7 +21,7 @@ maisbarato(X,Y,C):- custo_percurso(C,NC),!,
 
 menorcusto(X,Y,NC):- caminho(X,Y,C1),
  custo_percurso(C1,NC1),
- NC1<NC, NC1 <= 450.
+ NC1<NC, NC1 =< 450.
 
 /* custo do percurso */
 custo_percurso([_],0).
@@ -54,8 +55,8 @@ melhor(X,Y,T):- solucao(T,MT,_,_),!,
 /* melhor trajeto */ 
 otimizado(X,Y,MT):- caminho(X,Y,T1),
     solucao(T1,MT1,_,_),
-    MT1>MT.
+    MT1<MT.
 
 /* solução */ 
-solucao(T1,MT1,P,K):- custo_percurso(T1,K), distancia_percurso(T1,P), MT1 is P/K.
+solucao(T1,MT1,P,K):- custo_percurso(T1,K), distancia_percurso(T1,P), MT1 is K/P.
 

@@ -138,16 +138,3 @@ mostraResultado(P):-
     retract(variavel(R1)), 
     retract(fact(_)).
 
-
-
-%reposta([]):- write('').
-
-%resposta([resort(Hotel, Preco_Noite, Localizacao, Tipo_Gastronomia, Estrelas, Classificacao)|R]):-
-%write('///////////////////////////////////'),nl,
-%write('Hotel: '), write(Hotel), nl,
-%write('Preco_Noite: '), write(Preco_Noite), nl,
-%write('Localizacao: '), write(Localizacao), nl,
-%write('Tipo_Gastronomia: '), write(Tipo_Gastronomia), nl,
-%write('Estrelas: '), write(Estrelas), nl,
-%write('Classificacao: '), write(Classificacao), nl,
-%write('///////////////////////////////////'),resposta(R).
