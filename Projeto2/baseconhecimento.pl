@@ -11,11 +11,11 @@ percurso(l1, l3).
 percurso(l8, l3).
 percurso(l8, l7).
 percurso(l7, l6).
-percurso(l7, l2).     %CHEGOU 
-percurso(l6, l2).     %CHEGOU
-percurso(l5, l2).     %CHEGOU
+percurso(l7, l2).      
+percurso(l6, l2).     
+percurso(l5, l2).     
 percurso(l3, l4).     
-percurso(l4, l2).     %CHEGOU
+percurso(l4, l2).     
 
 /* CUSTO ALOJAMENTO */
 custo(l1, 50).
@@ -32,10 +32,10 @@ distancia(l1, l7, 34).
 distancia(l1, l6, 55).
 distancia(l1, l5, 100).
 distancia(l1, l3, 25).
-distancia(l8, l3, 0).    %DISTANCIA????
+distancia(l8, l3, 0).    
 distancia(l8, l7, 25).
 distancia(l7, l6, 15).
-distancia(l7, l2, 0).    %DISTANCIA????   
+distancia(l7, l2, 0).     
 distancia(l6, l2, 30).     
 distancia(l5, l2, 25).     
 distancia(l3, l4, 40).     
