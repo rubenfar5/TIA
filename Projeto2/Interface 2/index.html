@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="Página-Inicial.css" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+  <script src="../../tau-prolog.js"></script>
   <meta name="generator" content="Nicepage 4.9.5, nicepage.com">
   <link id="u-theme-google-font" rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -83,63 +84,60 @@
       <div class="u-align-left u-image u-image-circle u-image-1" data-image-width="600" data-image-height="500"></div>
 
       <div class="u-expanded-width-xs u-form u-radius-10 u-white u-form-1">
-        <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email"
-          name="form" style="padding: 28px;">
+        <form action="#" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form"
+          style="padding: 28px;">
           <div class="u-form-email u-form-group">
             <label for="zona" class="u-label">Indique o seu ponto de partida:</label>
             <br>
-            <input type="radio" id="l1" name="ponto" value="l1">
+            <input type="radio" id="l1" name="ponto_partida" value="l1">
             <label for="algarve">L1 </label>
             <br>
-            <input type="radio" id="l3" name="ponto" value="l3">
+            <input type="radio" id="l3" name="ponto_partida" value="l3">
             <label for="açores">L3</label>
             <br>
-            <input type="radio" id="l4" name="ponto" value="l4">
+            <input type="radio" id="l4" name="ponto_partida" value="l4">
             <label for="madeira">L4</label>
             <br>
-            <input type="radio" id="l5" name="ponto" value="l5">
+            <input type="radio" id="l5" name="ponto_partida" value="l5">
             <label for="centro">L5</label>
             <br>
-            <input type="radio" id="l6" name="ponto" value="l6">
+            <input type="radio" id="l6" name="ponto_partida" value="l6">
             <label for="açores">L6</label>
             <br>
-            <input type="radio" id="l7" name="ponto" value="l7">
+            <input type="radio" id="l7" name="ponto_partida" value="l7">
             <label for="madeira">L7</label>
             <br>
-            <input type="radio" id="l8" name="ponto" value="l8">
+            <input type="radio" id="l8" name="ponto_partida" value="l8">
             <label for="centro">L8</label>
           </div>
           <div class="u-form-email u-form-group">
-            <label for="zona" class="u-label">Indique o seu ponto de partida:</label>
+            <label for="zona" class="u-label">Indique o seu ponto de chegada:</label>
             <br>
-            <input type="radio" id="l1" name="ponto" value="l1">
-            <label for="algarve">L1 </label>
-            <br>
-            <input type="radio" id="l2" name="ponto" value="l2">
+            <input type="radio" id="l2" name="ponto_chegada" value="l2">
             <label for="açores">L2</label>
             <br>
-            <input type="radio" id="l3" name="ponto" value="l3">
+            <input type="radio" id="l3" name="ponto_chegada" value="l3">
             <label for="açores">L3</label>
             <br>
-            <input type="radio" id="l4" name="ponto" value="l4">
+            <input type="radio" id="l4" name="ponto_chegada" value="l4">
             <label for="madeira">L4</label>
             <br>
-            <input type="radio" id="l5" name="ponto" value="l5">
+            <input type="radio" id="l5" name="ponto_chegada" value="l5">
             <label for="centro">L5</label>
             <br>
-            <input type="radio" id="l6" name="ponto" value="l6">
+            <input type="radio" id="l6" name="ponto_chegada" value="l6">
             <label for="açores">L6</label>
             <br>
-            <input type="radio" id="l7" name="ponto" value="l7">
+            <input type="radio" id="l7" name="ponto_chegada" value="l7">
             <label for="madeira">L7</label>
             <br>
-            <input type="radio" id="l8" name="ponto" value="l8">
+            <input type="radio" id="l8" name="ponto_chegada" value="l8">
             <label for="centro">L8</label>
           </div>
           <div class="u-form-email u-form-group">
             <label for="zona" class="u-label">O que prefere?</label>
             <br>
-            <input type="radio" id="distancia" name="preferencia" value="distancia">
+            <input type="radio" id="distancia" name="ponto" value="distancia">
             <label for="algarve">Caminho mais curto </label>
             <br>
             <input type="radio" id="custo" name="ponto" value="custo">
@@ -149,9 +147,9 @@
             <label for="açores">Caminho com melhor custo/distancia</label>
           </div>
           <div class="u-align-right u-form-group u-form-submit">
-            <a href="#"
-              class="u-active-palette-1-light-1 u-border-2 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-10 u-btn-1">Submeter</a>
-            <input type="submit" value="submit" class="u-form-control-hidden">
+            <input
+              class="u-active-palette-1-light-1 u-border-2 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-10 u-btn-1"
+              type="button" value="Submeter" id="button" onClick="clickButton();">
           </div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
@@ -161,13 +159,188 @@
     </div>
   </section>
 
-
-  <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-735d">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <script class="u-script" type="text/javascript" src="function.js" defer=""></script>
-    </div>
-  </footer>
-
 </body>
 
 </html>
+
+<script id="caminho.pl" type="text/prolog">
+:- use_module(library(lists)).
+:- use_module(library(charsio)).
+:- use_module(library(format)).
+:- use_module(library(js)).
+:- use_module(library(os)).
+:- use_module(library(promises)).
+:- use_module(library(random)).
+:- use_module(library(statistics)).
+
+/* LIGAÇÕES */
+percurso(l1, l8).
+percurso(l1, l7).
+percurso(l1, l6).
+percurso(l1, l5).
+percurso(l1, l3).
+percurso(l8, l3).
+percurso(l8, l7).
+percurso(l7, l6).
+percurso(l7, l2).      
+percurso(l6, l2).     
+percurso(l5, l2).     
+percurso(l3, l4).     
+percurso(l4, l2). 
+  
+/* CUSTO ALOJAMENTO */
+custo(l1, 50).
+custo(l3, 240).
+custo(l4, 150).
+custo(l5, 400).
+custo(l6, 70).
+custo(l7, 30).
+custo(l8, 100).
+
+/* DISTÂNCIA ENTRE PONTOS */
+distancia(l1, l8, 55).
+distancia(l1, l7, 34).
+distancia(l1, l6, 55).
+distancia(l1, l5, 100).
+distancia(l1, l3, 25).
+distancia(l8, l3, 0).    
+distancia(l8, l7, 25).
+distancia(l7, l6, 15).
+distancia(l7, l2, 0).     
+distancia(l6, l2, 30).     
+distancia(l5, l2, 25).     
+distancia(l3, l4, 40).     
+distancia(l4, l2, 20). 
+  
+/* caminho */
+caminho(X,Z,Caminho):-caminho(X,Z,[X],Caminho).
+caminho(X,X,Caminho,Caminho).
+caminho(X,Z,Visitado,Caminho)
+:- percurso(X,Y),
+\+ member(Y,Visitado),
+caminho(Y,Z,[Y | Visitado],Caminho).
+
+
+/* caminho com menor custo */ 
+caminhobarato(X,Y,C):-caminho(X,Y,C), 
+maisbarato(X,Y,C).  
+
+maisbarato(X,Y,C):- custo_percurso(C,NC),!,
+\+ menorcusto(X,Y,NC).
+
+menorcusto(X,Y,NC):- caminho(X,Y,C1),
+custo_percurso(C1,NC1),
+NC1<NC, NC1 =< 450.
+
+/* custo do percurso */
+custo_percurso([_],0).
+custo_percurso([_,Y|Z],Total):- custo(Y, T1),
+  custo_percurso([Y|Z],T2), Total is T1 + T2. 
+
+
+/* caminho com menos distância */
+caminhocurto(X,Y,C):-caminho(X,Y,C), 
+maiscurto(X,Y,C).  
+
+maiscurto(X,Y,C):- distancia_percurso(C,NC),!,
+\+ menordistancia(X,Y,NC).
+
+menordistancia(X,Y,NC):- caminho(X,Y,C1),
+distancia_percurso(C1,NC1),
+NC1<NC. 
+
+/* distancia do percurso */
+distancia_percurso([_],0).
+distancia_percurso([X,Y|Z], Soma):- distancia(Y,X, S1),
+distancia_percurso([Y|Z],S2), Soma is S1 + S2.
+
+
+/* trajeto */
+trajeto(X,Y,T):- caminho(X,Y,T), melhor(X,Y,T).
+
+melhor(X,Y,T):- solucao(T,MT,_,_),!,
+  \+ otimizado(X,Y,MT).
+
+/* melhor trajeto */ 
+otimizado(X,Y,MT):- caminho(X,Y,T1),
+  solucao(T1,MT1,_,_),
+  MT1<MT.
+
+/* solução */ 
+solucao(T1,MT1,P,K):- custo_percurso(T1,K), distancia_percurso(T1,P), MT1 is K/P.
+
+  </script>
+
+<script>
+  function displayRadioValue(X) {
+    switch (X) {
+      case 'inicio':
+        var ele = document.getElementsByName('ponto_partida');
+
+        for (i = 0; i < ele.length; i++) {
+          if (ele[i].checked)
+            return ele[i].value;
+        }
+        break;
+      case 'fim':
+        var ele = document.getElementsByName('ponto_chegada');
+
+        for (i = 0; i < ele.length; i++) {
+          if (ele[i].checked)
+            return ele[i].value;
+        }
+        break;
+      case 'opcao':
+        var ele = document.getElementsByName('ponto');
+
+        for (i = 0; i < ele.length; i++) {
+          if (ele[i].checked)
+            return ele[i].value;
+        }
+        break;
+    }
+
+  }
+</script>
+
+<script type="text/javascript">
+  // Show the likes of a person
+  function caminho() {
+    var inicio = displayRadioValue('inicio');
+    var fim = displayRadioValue('fim');
+    var opcao = displayRadioValue('opcao');
+    var goal;
+
+    console.log(inicio);
+    console.log(fim);
+    console.log(opcao);
+
+    switch (opcao) {
+      case 'distancia':
+        goal = "caminhocurto(" + inicio + ", " + fim + ", X).";
+        break;
+      case 'custo':
+        goal = "caminhobarato(" + inicio + ", " + fim + ", X).";
+        break;
+      case 'custoedistancia':
+        goal = "trajeto(" + inicio + ", " + fim + ", X).";
+        break;
+    }
+
+    console.log(goal);
+    // Create session
+    var session = pl.create();
+    // Session consult
+    session.consult("caminho.pl");
+    // Query goal
+    session.query(goal);
+    // Find answers
+    session.answer(function (x) { alert("Melhor percurso para si: " + pl.format_answer(x)); });
+  }
+
+
+  function clickButton() {
+    caminho();
+  }
+
+</script>

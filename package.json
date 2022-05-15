@@ -1,0 +1,22 @@
+{
+  "name": "tia",
+  "version": "1.0.0",
+  "description": "Versão Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubenfar5/TIA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rubenfar5/TIA/issues"
+  },
+  "homepage": "https://github.com/rubenfar5/TIA#readme",
+  "dependencies": {
+    "tau-prolog": "^0.3.2"
+  }
+}
