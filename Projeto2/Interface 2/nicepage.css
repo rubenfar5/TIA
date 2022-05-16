@@ -5597,7 +5597,8 @@ section.u-image:not(.u-hover-box),
   margin-bottom: 0.5rem;
 }
 .u-image-circle.u-image {
-  border-radius: 50% !important;
+  border-radius: 40% !important;
+
 }
 .u-image-square {
   border-radius: 0;

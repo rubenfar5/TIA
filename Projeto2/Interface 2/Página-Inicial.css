@@ -15,13 +15,14 @@ html, body
 }
 
 .u-section-1 .u-image-1 {
-  width: 630px;
-  height: 630px;
+  width: 500px;
+  height: 500px;
   object-position: 0% 50%;
   background-position: 50% 50%;
-  background-image: url("images/ebae7bcba5475ede8dcd65d1275d4c8b1777771c11901710eefe0c6497d908c19a1835f650887fe6bee9cf6c0512f06005165a9f90c82b6ad44315_1280.jpg");
+  background-image: url("images/Capturar.png");
   margin: -980px auto 0 2px;
   margin-top: -1230px;
+  border: solid;
 }
 
 .u-section-1 .u-shape-2 {
