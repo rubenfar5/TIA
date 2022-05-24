@@ -1,7 +1,7 @@
 html, body 
 { 
  height: 100%;
- overflow: hidden
+ overflow:auto;
 }
 
 .u-section-1 .u-sheet-1 {
@@ -10,7 +10,7 @@ html, body
 
 .u-section-1 .u-shape-1 {
   width: 1088px;
-  height: 918px;
+  height: 780px;
   margin: 60px 0 0 auto;
 }
 
