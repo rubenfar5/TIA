@@ -117,20 +117,20 @@
           <div class="u-form-group u-form-message">
             <label for="gastronomia" class="u-label">É fã de gastronomia?</label>
             <br>
-            <input type="radio" id="Sim" name="gastronomia" value="sim">
+            <input type="radio" id="Sim" name="gastronomia" value="fa_gastronomia">
             <label for="sim">Sim, gosto de experimentar coisas novas</label>
             <br>
-            <input type="radio" id="Nao" name="gastronomia" value="nao">
+            <input type="radio" id="Nao" name="gastronomia" value="nao_fa_gastronomia">
             <label for="nao">Não, prefiro comida portuguesa</label>
             <br>
           </div>
           <div class="u-form-group u-form-message">
             <label for="desporto" class="u-label">Tenciona praticar desporto?</label>
             <br>
-            <input type="radio" id="SimDesp" name="desporto" value="sim">
+            <input type="radio" id="SimDesp" name="desporto" value="desportista">
             <label for="simDesp">Sim, não passo sem uma boa dose de exercício</label>
             <br>
-            <input type="radio" id="NaoDesp" name="desporto" value="nao">
+            <input type="radio" id="NaoDesp" name="desporto" value="nao_desportista">
             <label for="naoDesp">Não, prefiro descansar</label>
             <br>
           </div>
@@ -150,10 +150,10 @@
           <div class="u-form-group u-form-message">
             <label for="animais" class="u-label">Tem animais de estimação e está a pensar levá-los consigo?</label>
             <br>
-            <input type="radio" id="SimAni" name="animais" value="sim">
+            <input type="radio" id="SimAni" name="animais" value="animais">
             <label for="simAni">Sim, não largo o meu companheiro por nada</label>
             <br>
-            <input type="radio" id="NaoAni" name="animais" value="nao">
+            <input type="radio" id="NaoAni" name="animais" value="nao_animais">
             <label for="naoAni">Não, não tenho animal de estimação/ tenho onde o deixar</label>
             <br>
           </div>
@@ -166,6 +166,11 @@
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
+    </div>
+  </section>
+  <section>
+    <div id="dataTable" style="display: none;">
+      
     </div>
   </section>
 </body>
@@ -319,10 +324,11 @@ toSetHelper([H|T], Acc, Set):-
 
 
 /* Encontrar resorts adequados para as escolhas do utilizador */ 
-verResort(N,G,D,PCN,A):- findall((Y,P,L,E,AV),(resort(Y,P,L,G1,E,AV,AD,PCN1), membro(N,L), decisaoPreferencia(PCN,PCN1),  preferenciaAnimal(A,AD), preferenciaComida(G,G1), preferenciaDesporto(D,AD)), K), toSet(K, Set), write(Set).
+verResort(N,G,D,PCN,A,Set):- findall((Y,P,L,E,AV),(resort(Y,P,L,G1,E,AV,AD,PCN1), membro(N,L), decisaoPreferencia(PCN,PCN1),  preferenciaAnimal(A,AD), preferenciaComida(G,G1), preferenciaDesporto(D,AD)), K), toSet(K, Set).
 
+print(Set):- verResort(N,G,D,PCN,A,K), toSet(K,Set).
 /* chama função de procura tendo em conta o perfil do utilizador */ 
-perfil(perfil_1,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, cultura], [animais]).
+perfil(perfil_1,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, cultura], [animais],).
 perfil(perfil_2,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, cultura], [nao_animais]).
 perfil(perfil_3,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, praia], [animais]).
 perfil(perfil_4,L):- verResort(L, [fa_gastronomia], [desportista], [natureza, praia], [nao_animais]).
@@ -438,10 +444,9 @@ if nao_fa_gastronomia and nao_desportista and praia and cultura and nao_animais 
     switch (X) {
       case 'zona':
         var ele = document.getElementsByName('fav_zone');
-
         for (i = 0; i < ele.length; i++) {
           if (ele[i].checked)
-            return ele[i].value;
+          return ele[i].value;
         }
         break;
       case 'gastronomia':
@@ -468,34 +473,38 @@ if nao_fa_gastronomia and nao_desportista and praia and cultura and nao_animais 
             return ele[i].value;
         }
         break;
-      /*case 'preferencia':
+      case 'preferencia':
       var ele = document.getElementsByName('preferencia');
+      var array = [];
 
       for (i = 0; i < ele.length; i++) {
         if (ele[i].checked)
-          return ele[i].value;
+          array.push(ele[i]);
       }
-      break;*/
+      return array;
+      break;
     }
-
-
   }
 </script>
 
-<script>
-  function verPreferencia() {
-    var checkedValue = null; //criar array[]
-    var inputElements = document.getElementsByName('preferencia');
-    for (var i = 0; inputElements[i]; ++i) {
-      if (inputElements[i].checked) {
-        checkedValue = inputElements[i].value; //incrementar resposta no []
-        break;
-      }
-    }
-    return checkedValue;
-  }
-</script>
+<script type="text/javascript">
+function criarResposta() {
 
+var tabelaHTML = "  <table> " +
+  + "<tr>"
+  + "<th> Hotel </th>" + 
+  + "<th> Preço/noite </th>" +
+  + "<th> Localização </th>" +
+  + "<th> Estrelas </th>" +
+  + "<th> Classificação </th>" +
+  + "</tr>" +
+  + "<tr>" +
+  + "<td> </td>" +
+    
+  + "</tr>" +
+  + "</table>";
+}
+</script>
 
 <script type="text/javascript">
   // Show the likes of a person
@@ -504,31 +513,36 @@ if nao_fa_gastronomia and nao_desportista and praia and cultura and nao_animais 
     var gastronomia = displayRadioValue('gastronomia');
     var desporto = displayRadioValue('desporto');
     var animais = displayRadioValue('animais');
-    var preferencia = verPreferencia();
+    var preferencia = displayRadioValue('preferencia');
     var goal;
+    var resposta;
 
-    console.log(zona);
-    console.log(gastronomia);
-    console.log(desporto);
-    console.log(animais);
-    console.log(preferencia);
-
-
+    
+    goal = "verResort("+zona+", ["+gastronomia+"], ["+desporto+"], ["+preferencia[0].value+", "+preferencia[1].value+"], ["+animais+"], Set).";
     //console.log(goal);
     // Create session
     var session = pl.create();
     // Session consult
     session.consult('resort.pl');
     // Query goal
-    //session.query("resort(X, 150, _, _, _, _, _, _).");
-    session.query("perfil(perfil_24, 'Algarve').");
+    session.query(goal);
+    //session.query("perfil(perfil_24, 'Algarve').");
     // Find answers
-    session.answer(function (x) { console.log(pl.format_answer(x)); });
+    session.answer(function (x) { 
+      resposta = pl.format_answer(x);
+      console.log(resposta);
+    });
+
+    //session.answer(function (x) { console.log(pl.format_answer(x)); });
   }
 
 
   function clickButton() {
     caminho();
+  }
+
+  function verTabela() {
+
   }
 
 </script>

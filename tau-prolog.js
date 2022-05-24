@@ -212,6 +212,7 @@
 	tau_user_output = {
 		put: function( text, _ ) {
 			console.log( text );
+			//console.log( text.length );
 			return true;
 		},
 		flush: function() {
