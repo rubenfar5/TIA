@@ -160,8 +160,8 @@
           <div class="u-align-right u-form-group u-form-submit" >
             <input
               class="u-active-palette-1-light-1 u-border-2 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-10 u-btn-1"
-              type="button" value="Submeter" id="button" onclick="Mudarestado('minhaDiv');">
-              <div id="minhaDiv" style="display:none">Conteudo</div>
+              type="button" value="Submeter" id="button" onClick="clickButton();">
+              <div id="minhaDiv" style="display:none"></div>
           </div>
           <div class="u-form-send-message u-form-send-success"> Obrigado, esperemos ter conseguido ajudar. </div>
           <input type="hidden" value="" name="recaptchaResponse">
@@ -518,8 +518,8 @@ var tabelaHTML = "  <table> " +
     var goal;
     var resposta;
 
-    
     goal = "verResort("+zona+", ["+gastronomia+"], ["+desporto+"], ["+preferencia[0].value+", "+preferencia[1].value+"], ["+animais+"], Set).";
+    //goal = "verResort("+zona+", ["+gastronomia+"], ["+desporto+"], ["+preferencia[0].value+", "+preferencia[1].value+"], ["+animais+"], Set), write(Set).";
     //console.log(goal);
     // Create session
     var session = pl.create();
@@ -527,14 +527,12 @@ var tabelaHTML = "  <table> " +
     session.consult('resort.pl');
     // Query goal
     session.query(goal);
-    //session.query("perfil(perfil_24, 'Algarve').");
     // Find answers
     session.answer(function (x) { 
       resposta = pl.format_answer(x);
-      console.log(resposta);
+      document.getElementById("minhaDiv").innerHTML = "Resultado:" + resposta;
+      document.getElementById("minhaDiv").style.display = 'block';
     });
-
-    //session.answer(function (x) { console.log(pl.format_answer(x)); });
   }
 
 
@@ -548,12 +546,3 @@ var tabelaHTML = "  <table> " +
 
 </script>
 
-<script>
-
-function Mudarestado(el) {
-  var display = document.getElementById(el).style.display;
-  if (display == "none")
-    document.getElementById(el).style.display = 'block';
-  else
-    document.getElementById(el).style.display = 'none';
-}</script>
