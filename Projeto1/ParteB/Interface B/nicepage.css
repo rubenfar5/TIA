@@ -36661,7 +36661,18 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 }
 
-
+.divresposta {
+  font-size: 90%;
+  font-weight: bold;
+  line-height: 25px;
+  color: #1d3557;
+  margin-top: 25px;
+  padding: 12px;
+  background-color: #caf0f8;
+  border: 3px solid #1d3557;
+  border-radius: 10px;
+  text-align:justify;
+}
 
  .u-footer {
   background-image: none;
