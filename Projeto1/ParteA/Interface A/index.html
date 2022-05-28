@@ -158,10 +158,9 @@
             <br>
           </div>
           <div class="u-align-right u-form-group u-form-submit">
-            <input
-              class="u-active-palette-1-light-1 u-border-2 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-10 u-btn-1"
-              type="button" value="Submeter" id="button" onClick="clickButton();">
-          </div>
+              <button class="u-active-palette-1-light-1 u-border-2 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-10 u-btn-1" id="button" type="button" onclick="Mudarestado('minhaDiv')">Mostrar / Esconder</button>
+              <div id="minhaDiv" style="display:none">Conteudo</div>
+            </div>
           <div class="u-form-send-message u-form-send-success"> Obrigado, esperemos ter conseguido ajudar. </div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
@@ -546,3 +545,13 @@ var tabelaHTML = "  <table> " +
   }
 
 </script>
+
+<script>
+
+function Mudarestado(el) {
+  var display = document.getElementById(el).style.display;
+  if (display == "none")
+    document.getElementById(el).style.display = 'block';
+  else
+    document.getElementById(el).style.display = 'none';
+}</script>
