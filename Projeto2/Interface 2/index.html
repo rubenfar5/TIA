@@ -157,6 +157,7 @@
             <input
               class="u-active-palette-1-light-1 u-border-2 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-10 u-btn-1"
               type="button" value="Submeter" id="button" onClick="clickButton();">
+              <div id="minhaDiv" style="display:none"></div>
           </div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
@@ -318,10 +319,6 @@ solucao(T1,MT1,P,K):- custo_percurso(T1,K), distancia_percurso(T1,P), MT1 is K/P
     var opcao = displayRadioValue('opcao');
     var goal;
 
-    console.log(inicio);
-    console.log(fim);
-    console.log(opcao);
-
     switch (opcao) {
       case 'distancia':
         goal = "caminhocurto(" + inicio + ", " + fim + ", X).";
@@ -334,7 +331,6 @@ solucao(T1,MT1,P,K):- custo_percurso(T1,K), distancia_percurso(T1,P), MT1 is K/P
         break;
     }
 
-    console.log(goal);
     // Create session
     var session = pl.create();
     // Session consult
@@ -342,7 +338,11 @@ solucao(T1,MT1,P,K):- custo_percurso(T1,K), distancia_percurso(T1,P), MT1 is K/P
     // Query goal
     session.query(goal);
     // Find answers
-    session.answer(function (x) { alert("Melhor percurso para si: " + pl.format_answer(x)); });
+    session.answer(function (x) { 
+      resposta = pl.format_answer(x);
+      document.getElementById("minhaDiv").innerHTML = "Deve seguir por: " + resposta;
+      document.getElementById("minhaDiv").style.display = 'block';
+    });
   }
 
 
