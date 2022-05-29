@@ -528,6 +528,7 @@ var tabelaHTML = "  <table> " +
     session.query(goal);
     // Find answers
     session.answer(function (x) { 
+      document.getElementById("minhaDiv").innerHTML = "";
       resposta = pl.format_answer(x);
       document.getElementById("minhaDiv").innerHTML = "Resultado:" + resposta;
       document.getElementById("minhaDiv").style.display = 'block';
