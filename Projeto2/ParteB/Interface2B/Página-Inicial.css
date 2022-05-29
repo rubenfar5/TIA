@@ -15,16 +15,16 @@ html, body
 }
 
 .u-section-1 .u-image-1 {
-  width: 530px;
-  height: 530px;
+  width: 500px;
+  height: 462px;
   object-position: 0% 0%;
-  background-position: 50% 50%;
-  background-image: url("images/Grafo.png ");
+  background-position: 122% 50%;
+  background-image: url("images/Grafo2.png ");
   margin: -1100px auto 0 1px;
   margin-top: -1270px;
   border: solid 3px;
   border-color: black;
-  background-size: 124%;
+  background-size: 92%;
 }
 
 .u-section-1 .u-shape-2 {
