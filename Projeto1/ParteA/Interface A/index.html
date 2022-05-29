@@ -519,7 +519,7 @@ var tabelaHTML = "  <table> " +
     var resposta;
 
     //goal = "verResort("+zona+", ["+gastronomia+"], ["+desporto+"], ["+preferencia[0].value+", "+preferencia[1].value+"], ["+animais+"], Set).";
-    goal = "verResort("+zona+", ["+gastronomia+"], ["+desporto+"], ["+preferencia[0].value+", "+preferencia[1].value+"], ["+animais+"], Set), write(Set).";
+    goal = "verResort('"+ zona +"', ["+gastronomia+"], ["+desporto+"], ["+preferencia[0].value+", "+preferencia[1].value+"], ["+animais+"], Set), write(Set).";
     // Create session
     var session = pl.create();
     // Session consult
@@ -528,7 +528,6 @@ var tabelaHTML = "  <table> " +
     session.query(goal);
     // Find answers
     session.answer(function (x) { 
-      document.getElementById("minhaDiv").innerHTML = "";
       resposta = pl.format_answer(x);
       document.getElementById("minhaDiv").innerHTML = "Resultado:" + resposta;
       document.getElementById("minhaDiv").style.display = 'block';

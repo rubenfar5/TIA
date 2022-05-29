@@ -39,8 +39,8 @@ ________________________________________________________________________________
         (R1 == 2), assert(variavel('Alentejo'));
         (R1 == 3), assert(variavel('Açores'));
         (R1 == 4), assert(variavel('Madeira'));
-        (R1 == 4), assert(variavel('Centro'));
-        (R1 == 5), assert(variavel('Norte'))), nl, 
+        (R1 == 5), assert(variavel('Centro'));
+        (R1 == 6), assert(variavel('Norte'))), nl, 
 
 write(
 "__________________________________________________________________________________________________________________________________

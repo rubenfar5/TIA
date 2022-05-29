@@ -149,7 +149,7 @@
             <br>
             <br>
             <span id="rangeValue"></span>
-            <Input class="range" type="range" name="" value="0" min="0" max="10" onChange="rangeSlide(this.value)"
+            <Input class="range" type="range" name="minimo_classificacao" value="0" min="0" max="10" onChange="rangeSlide(this.value)"
               onmousemove="rangeSlide(this.value)"></Input>
             <br>
             <br>
@@ -163,6 +163,7 @@
             <input
               class="u-active-palette-1-light-1 u-border-2 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-10 u-btn-1"
               type="button" value="Submeter" id="button" onClick="clickButton();">
+              <div class="divresposta" id="minhaDiv" style="display:none"></div>
           </div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
@@ -187,76 +188,188 @@
   :- use_module(library(random)).
   :- use_module(library(statistics)).
   
+
+  result(Idade, Desporto, Preferencia, Custo, Classificacao, Class):- assertz(fact(faixa_etaria=Idade)), assertz(fact(desporto=Desporto)), assertz(fact(preferencia=Preferencia)), assertz(fact(gasto_noite=Custo)), assertz(fact(minimo_classificacao=Classificacao)), findall(A,fact(A),Z), classify(Z,Class), retractall(fact(_)), write(Class).
+ 
+  attribute(faixa_etaria, [entre_16_20, entre_21_30, entre_31_44, entre_45_64, mais_que_65]).
+  attribute(desporto, [sim, nao]).
+  attribute(preferencia, [praia, cultura, natureza]).
+  attribute(gasto_noite, [menos_200, entre_201_400, entre_401_600, mais_que_600]).
+  attribute(minimo_classificacao, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).
+
+  :-  op( 300, xfx, <==).
   
+  learn( Class)  :-
+     bagof( example( ClassX, Obj), example( ClassX, Obj), Examples),        % Collect examples
+     learn( Examples, Class, Description),                                  % Induce rule   
+     nl,                               % Output rule   
+     assert( Class  <==  Description).                                      % Assert rule
+  
+  learn( Examples, Class, [])  :-
+     \+ member( example( Class, _ ), Examples).               % No example to cover 
+  
+  learn( Examples, Class, [Conj | Conjs])  :-
+     learn_conj( Examples, Class, Conj),
+     remove( Examples, Conj, RestExamples),                    % Remove examples that match Conj   
+     learn( RestExamples, Class, Conjs).                       % Cover remaining examples 
+  
+  learn_conj( Examples, Class, [])  :-
+     \+ ( member( example( ClassX, _ ), Examples),            % There is no example
+     ClassX \== Class), !.                                     % of different class 
+  
+  learn_conj( Examples, Class, [Cond | Conds])  :-
+     choose_cond( Examples, Class, Cond),                      % Choose attribute value   
+     filter( Examples, [ Cond], Examples1),
+     learn_conj( Examples1, Class, Conds).
+  
+  choose_cond( Examples, Class, AttVal)  :-
+     findall( AV/Score, score( Examples, Class, AV, Score), AVs),
+     best( AVs, AttVal).                                       % Best score attribute value 
+  
+  best( [ AttVal/_], AttVal).
+  
+  best( [ AV0/S0, AV1/S1 | AVSlist], AttVal)  :-
+     S1  >  S0, !,                                             % AV1 better than AV0   
+     best( [AV1/S1 | AVSlist], AttVal)
+     ;
+     best( [AV0/S0 | AVSlist], AttVal).
+  
+  filter( Examples, Cond, Examples1)  :-
+     findall( example( Class, Obj),
+                  ( member( example( Class, Obj), Examples), satisfy( Obj, Cond)),
+                  Examples1).
+  
+  remove( [], _, []).
+  
+  remove( [example( _, Obj) | Es], Conj, Es1)  :-
+     satisfy( Obj, Conj), !,                                    % First example matches Conj   
+     remove( Es, Conj, Es1).                                    % Remove it 
+  
+  remove( [E | Es], Conj, [E | Es1])  :-                        % Retain first example   
+     remove( Es, Conj, Es1).
+  
+  score( Examples, Class, AttVal, Score)  :-
+     candidate( Examples, Class, AttVal),          	% A suitable attribute value   
+     filter( Examples, [ AttVal], Examples1),      	% Examples1 satisfy condition Att = Val     
+     length( Examples1, N1),                       	% Length of list   
+     count_pos( Examples1, Class, NPos1),          	% Number of positive examples   
+     NPos1 > 0,                                    	% At least one positive example matches AttVal
+     Score is (NPos1 + 1) / (N1 + 2).			% Laplace estimate of probability of Class
+  
+  candidate( Examples, Class, Att = Val)  :-
+     attribute( Att, Values),                      	% An attribute   
+     member( Val, Values),                         	% A value   
+     suitable( Att = Val, Examples, Class).
+  
+  suitable( AttVal, Examples, Class)  :-            
+      % At least one negative example must not match AttVal
+     member( example( ClassX, ObjX), Examples),
+     ClassX \== Class,                                     % Negative example   
+     \+ satisfy( ObjX, [ AttVal]), !.                      % that does not match 
+  
+  count_pos( [], _, 0).
+  
+  count_pos( [example( ClassX,_ ) | Examples], Class, N)  :-
+     count_pos( Examples, Class, N1),
+     ( ClassX = Class, !, N is N1 + 1; N = N1).
+  
+  writelist( []).
+  
+  writelist( [X | L])  :-
+     tab( 2), write( X), nl,
+     writelist( L).
+  
+  classify(Object,Class):-
+    Class <== Description,		% Learned rule about Class
+    member(Conj, Description),	% A conjunctive condition
+    satisfy(Object, Conj).		% Object satisfies Conj
+
+  nao<==[[preferencia=cultura],[preferencia=natureza, faixa_etaria=entre_16_20, desporto=sim], [preferencia=natureza, faixa_etaria=entre_21_30], [preferencia=natureza, faixa_etaria=entre_31_44], [preferencia=praia]].
+  sim<==[[preferencia=natureza, faixa_etaria=entre_16_20, desporto=nao], [preferencia=natureza, faixa_etaria=mais_que_65]].
+
+  satisfy( Object, Conj)  :-
+     \+ ( member( Att = Val, Conj),
+           member( Att = ValX, Object),
+           ValX \== Val).
+           
+  learn_rules:-
+	  learn(nao),  
+	  learn(sim), 
+	  tell('destino_ifthen.pl'),
+	  listing(<==),
+	  told.
 
   </script>
 
-<!-- <script>
+<script>
     function displayRadioValue(X) {
       switch (X) {
-        case 'inicio':
-          var ele = document.getElementsByName('ponto_partida');
+        case 'faixa_etaria':
+          var ele = document.getElementsByName('faixa_etaria');
   
           for (i = 0; i < ele.length; i++) {
             if (ele[i].checked)
               return ele[i].value;
           }
           break;
-        case 'fim':
-          var ele = document.getElementsByName('ponto_chegada');
+        case 'desporto':
+          var ele = document.getElementsByName('desporto');
   
           for (i = 0; i < ele.length; i++) {
             if (ele[i].checked)
               return ele[i].value;
           }
           break;
-        case 'opcao':
-          var ele = document.getElementsByName('ponto');
+        case 'preferencia':
+          var ele = document.getElementsByName('preferencia');
   
           for (i = 0; i < ele.length; i++) {
             if (ele[i].checked)
               return ele[i].value;
           }
+          break;
+          case 'gasto_noite':
+          var ele = document.getElementsByName('gasto_noite');
+  
+          for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked)
+              return ele[i].value;
+          }
+          break;
+          case 'minimo_classificacao':
+          var ele = document.getElementById('rangeValue').textContent;
+          return ele;
           break;
       }
   
     }
-  </script> -->
+  </script> 
 
 <script type="text/javascript">
   // Show the likes of a person
   function caminho() {
-    //var inicio = displayRadioValue('inicio');
-    //var fim = displayRadioValue('fim');
-    //var opcao = displayRadioValue('opcao');
-    //var goal;
+    var faixa_etaria = displayRadioValue('faixa_etaria');
+    var desporto = displayRadioValue('desporto');
+    var preferencia = displayRadioValue('preferencia');
+    var gasto_noite = displayRadioValue('gasto_noite');;
+    var minimo_classificacao = displayRadioValue('minimo_classificacao');;
+    var goal;
+    var resposta;
 
-    //console.log(inicio);
-    //console.log(fim);
-    //console.log(opcao);
-    /*
-        switch (opcao) {
-          case 'distancia':
-            goal = "caminhocurto(" + inicio + ", " + fim + ", X).";
-            break;
-          case 'custo':
-            goal = "caminhobarato(" + inicio + ", " + fim + ", X).";
-            break;
-          case 'custoedistancia':
-            goal = "trajeto(" + inicio + ", " + fim + ", X).";
-            break;
-        }
-    */
-    //console.log(goal);
+   goal = "result(" + faixa_etaria + ", " + desporto + ", " + preferencia + ", " + gasto_noite + ", " + minimo_classificacao + ", X).";
+   console.log(goal);
     // Create session
     var session = pl.create();
     // Session consult
     session.consult('nome.pl');
     // Query goal
-    //session.query("resort(X, 150, _, _, _, _, _, _).");
-    session.query("perfil(perfil_24, 'Algarve').");
+    session.query(goal);
     // Find answers
-    session.answer(function (x) { console.log(pl.format_answer(x)); });
+    session.answer(function (x) { 
+      resposta = pl.format_answer(x);
+      document.getElementById("minhaDiv").innerHTML = "Resposta: " + resposta;
+      document.getElementById("minhaDiv").style.display = 'block';
+    });
   }
 
 
