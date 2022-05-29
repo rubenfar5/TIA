@@ -15,14 +15,16 @@ html, body
 }
 
 .u-section-1 .u-image-1 {
-  width: 500px;
-  height: 500px;
-  object-position: 0% 50%;
+  width: 530px;
+  height: 530px;
+  object-position: 0% 0%;
   background-position: 50% 50%;
-  background-image: url("images/Capturar.png");
-  margin: -980px auto 0 2px;
-  margin-top: -1230px;
-  border: solid;
+  background-image: url("images/Grafo.png ");
+  margin: -1100px auto 0 1px;
+  margin-top: -1270px;
+  border: solid 3px;
+  border-color: black;
+  background-size: 124%;
 }
 
 .u-section-1 .u-shape-2 {
@@ -72,6 +74,7 @@ html, body
     height: 660px;
     margin-top: -8100px;
     margin-left: 63px;
+    
   }
 
   .u-section-1 .u-shape-2 {
