@@ -62,7 +62,7 @@ filter( Examples, Cond, Examples1)  :-
 
 remove( [], _, []).
 
-%remove( [example( Class, Obj) | Es], Conj, Es1)  :-
+% remove( [example( Class, Obj) | Es], Conj, Es1)  :-
 remove( [example( _, Obj) | Es], Conj, Es1)  :-
    satisfy( Obj, Conj), !,                                    % First example matches Conj   
    remove( Es, Conj, Es1).                                    % Remove it 
