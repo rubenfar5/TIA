@@ -4,6 +4,10 @@ html, body
  overflow:auto;
 }
 
+.u-section-1{
+  margin-top: -70px;
+}
+
 .u-section-1 .u-sheet-1 {
   min-height: 1214px;
 }
@@ -39,7 +43,8 @@ html, body
   background-image: none;
   margin: -900px 0 0 548px;
   border: solid;
-  margin-top: -550px;
+  margin-top: -380px;
+  margin-left: 550px;
 }
 
 .u-section-1 .u-form-group-4 {
