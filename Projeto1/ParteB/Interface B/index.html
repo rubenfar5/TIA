@@ -217,13 +217,6 @@
      \+ ( member( Att = Val, Conj),
            member( Att = ValX, Object),
            ValX \== Val).
-           
-  learn_rules:-
-	  learn(nao),  
-	  learn(sim), 
-	  tell('destino_ifthen.pl'),
-	  listing(<==),
-	  told.
 
   </script>
 
@@ -273,7 +266,7 @@
 
 <script type="text/javascript">
   // Show the likes of a person
-  function caminho() {
+  function destino() {
     var faixa_etaria = displayRadioValue('faixa_etaria');
     var desporto = displayRadioValue('desporto');
     var preferencia = displayRadioValue('preferencia');
@@ -299,7 +292,7 @@
 
 
   function clickButton() {
-    caminho();
+    destino();
   }
 
 </script>
