@@ -26,7 +26,7 @@ depthfirst2( Node, [Node | Sol], Maxdepth)  :-
 iterativedeepening(Node,Solution,N,N):- 
 	depthfirst2(Node,Solution,N).
 iterativedeepening(Node,Solution,N,NR):- 
-        %N < Maxdepth, % assure this condition when backtracking
+        % N < Maxdepth, % assure this condition when backtracking
 	N1 is N+1,
         % write('n:'),write(N),nl, % verbose if needed
         iterativedeepening(Node,Solution,N1,NR).

@@ -25,7 +25,7 @@ search(Method,Par,Solution):-
        ifreverseneeded(Method,Solution1,Solution).
 
 % third option, no Move transition is defined, no reverse is executed, 
-%search3(Method,Par,Solution):- 
+% search3(Method,Par,Solution):- 
 %        initial(S0),
 %	execute(Method,Par,S0,Solution).
 

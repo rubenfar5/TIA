@@ -1,4 +1,4 @@
-%resort(nome, preco, [localizacao], [gastronomia], estrelas, classificacao, [oferta interna], [oferta externa]).
+% resort(nome, preco, [localizacao], [gastronomia], estrelas, classificacao, [oferta interna], [oferta externa]).
 
 resort("Douro Cister Hotel Resort", 358, ['Ucanha', 'Norte'], [portuguesa], 4, 8.5, ['animais admitidos', 'atividades desportivas', internet, estacionamento, piscina_interior, 'Spa e centro de bem-estar', 'Centro Fitness'], [museu, teatro, catedral, mosteiro]).
 resort("Prazer da Natureza Resort & Spa", 178, ['Caminha', 'Norte'], [europeia], 4, 8.6, ['atividades desportivas', internet, estacionamento, piscina, piscina_interior, 'Spa e centro de bem-estar', 'Centro Fitness'], [rio, montanha, mar, lago, praia]).
@@ -67,19 +67,19 @@ membro(X, [_|R]):- membro(X, R).
 
 
 /* procurar resorts tendo em conta a preferencia por cultura/praia/natureza */
-%se gosta de praia procura elementos como praia e marina na lista
+% se gosta de praia procura elementos como praia e marina na lista
 procuraPraia(L):- membro(praia,L); membro(marina,L).
 
-%se gosta de natureza procura elementos como montanha, rio, mar, lago, miradouro na lista
+% se gosta de natureza procura elementos como montanha, rio, mar, lago, miradouro na lista
 procuraNatureza(L):- membro(montanha,L); membro(rio,L); membro(mar,L); membro(lago,L); membro(miradouro,L).
 
-%se gosta de cultura procura elementos como museu, igreja, teatro, catedral, mosteiro, castelo e santuario na lista
+% se gosta de cultura procura elementos como museu, igreja, teatro, catedral, mosteiro, castelo e santuario na lista
 procuraCultura(L):- membro(museu,L); membro(igreja,L); membro(teatro,L); membro(catedral,L); membro(mosteiro,L); membro(castelo,L); membro(santuario,L).
 
-%tendo em conta as preferencias praia, natureza ou cultura, faz os metodos de procura indicados
+% tendo em conta as preferencias praia, natureza ou cultura, faz os metodos de procura indicados
 decisaoPreferencia(L,U):- (membro(praia, L), procuraPraia(U)); (membro(natureza, L), procuraNatureza(U)); (membro(cultura, L), procuraCultura(U)).
 
-%sugestao de hotel tendo em conta as preferencias					
+% sugestao de hotel tendo em conta as preferencias					
 sugestaoHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,_,U), decisaoPreferencia(L,U)),K), print(K).
 
 
@@ -88,35 +88,35 @@ listarHoteisRegiao(N):- setof(Y,(resort(Y,_,L,_,_,_,_,_), membro(N,L)),K), print
 
 
 /* procura resorts pela disponibilidade de aceitar animais ou nao */
-%verifica se existe a opcao de animais admitidos nas ofertas internas doo hotel
+% verifica se existe a opcao de animais admitidos nas ofertas internas doo hotel
 procuraAnimais(L):- membro('animais admitidos',L).
 
-%em todos os casos que nao tencione levar animais todos os hoteis são válidos, quando os quer levar tem de haver selecao de hoteis
+% em todos os casos que nao tencione levar animais todos os hoteis são válidos, quando os quer levar tem de haver selecao de hoteis
 preferenciaAnimal(L,A):- (membro(animais, L), procuraAnimais(A)); (membro(nao_animais,L), true).
 
-%selecao de todos os hoteis que admitem animais
+% selecao de todos os hoteis que admitem animais
 animaisHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaAnimal(L,A)),K), print(K).
 
 
 /* procura resorts tendo em conta se é fã de gastronomia ou nao */
-%quando o utilizador é fa de gastronomia procuramos encontrar outras solucoes no resort ou perto doo mesmo, procurando por outros tipos de gastronomia
+% quando o utilizador é fa de gastronomia procuramos encontrar outras solucoes no resort ou perto doo mesmo, procurando por outros tipos de gastronomia
 procuraComida(L):- membro(europeia,L); membro(italiana,L); membro(mediterranica,L); membro(espanhola,L); membro('local',L); membro(internacional,L); membro(latino-americana,L); membro(marisco,L); membro(steakhouse,L); membro(pizza,L); membro(asiatica,L); membro(saudavel,L); membro(churrasco,L); membro(brasileira,L); membro(inglesa,L).
 
-%verificacao se é fa de gastronomia ou nao, quando nao é todos os resorts servem
+% verificacao se é fa de gastronomia ou nao, quando nao é todos os resorts servem
 preferenciaComida(L,A):- (membro(fa_gastronomia, L), procuraComida(A)); (membro(nao_fa_gastronomia,L), true).
 
-%selecao dos resorts que oferecem varias opcoes de gastronomia
+% selecao dos resorts que oferecem varias opcoes de gastronomia
 gastronomiaHotel(L):- setof(Y,(resort(Y,_,_,A,_,_,_,_), preferenciaComida(L,A)),K), print(K).
 
 
 /* procura resorts tendo em conta a disponibilidade de atividades desportivas */
-%verifica se as ativades desportivas e centro fitness sao atividades oferecidas pelos hoteis
+% verifica se as ativades desportivas e centro fitness sao atividades oferecidas pelos hoteis
 procuraDesporto(L):- membro('atividades desportivas',L); membro('centro fitness',L).
 
-%pretende descobrir se o utilizador e desportista ou nao
+% pretende descobrir se o utilizador e desportista ou nao
 preferenciaDesporto(L,A):- (membro(desportista, L), procuraDesporto(A)); (membro(nao_desportista,L), true).
 
-%seleciona todos os hoteis com a opcao de praticar desporto
+% seleciona todos os hoteis com a opcao de praticar desporto
 atividadesHotel(L):- setof(Y,(resort(Y,_,_,_,_,_,A,_), preferenciaDesporto(L,A)),K), print(K).
 
 
