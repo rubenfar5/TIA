@@ -36661,6 +36661,12 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 }
 
+.pergunta{
+  font-weight: bold;
+  text-align: justify;
+  color: #478ac9;
+}
+
 .divresposta {
   font-size: 90%;
   font-weight: bold;
