@@ -12899,8 +12899,9 @@ section.u-image:not(.u-hover-box),
   border-width: 0px;
 }
 .u-svg-link {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
+  margin-top: -50px;
   fill: currentColor;
 }
 .u-svg-content {
