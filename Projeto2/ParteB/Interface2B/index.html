@@ -7,19 +7,20 @@
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-   <!-- jQuery library -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   
-   <!-- Latest compiled JavaScript -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="nicepage.css" media="screen">
   <link rel="stylesheet" href="Página-Inicial.css" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
-  <script src="../../tau-prolog.js"></script>
+  <script src="/tau-prolog.js"></script>
   <meta name="generator" content="Nicepage 4.9.5, nicepage.com">
   <link id="u-theme-google-font" rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -98,21 +99,22 @@
           <div class="u-form-email u-form-group">
             <label for="zona" class="u-label" style="font-weight: bold;">Qual é o método que prefere aplicar?</label>
             <br>
-            <input type="radio" id="largura" name="metodo" value="largura">
+            <input type="radio" id="breadthfirst" name="metodo" value="breadthfirst">
             <label for="algarve">Bread First Search (BFS)</label>
             <br>
-            <input type="radio" id="profundidade" name="metodo" value="profundidade">
+            <input type="radio" id="depthfirst" name="metodo" value="depthfirst">
             <label for="açores">Depth First Search (DFS)</label>
             <br>
-            <input type="radio" id="profundidade" name="metodo" value="profundidade">
+            <input type="radio" id="iterativedeepening" name="metodo" value="iterativedeepening">
             <label for="açores">Iterative Deepening Search (IDS)</label>
            <br>
+
           </div>
           <div class="u-align-right u-form-group u-form-submit">
             <input
               class="u-active-palette-1-light-1 u-border-2 u-border-active-palette-1-light-1 u-border-hover-palette-1-light-1 u-border-palette-1-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-10 u-btn-1"
               type="button" value="Submeter" id="button" onClick="clickButton();">
-              <div class="divresposta" id="minhaDiv" style="display:none"></div>
+            <div class="divresposta" id="minhaDiv" style="display:none"></div>
           </div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
@@ -126,7 +128,7 @@
 
 </html>
 
-<script id="caminho.pl" type="text/prolog">
+<script id="hillClimbing.pl" type="text/prolog">
 :- use_module(library(lists)).
 :- use_module(library(charsio)).
 :- use_module(library(format)).
@@ -136,166 +138,178 @@
 :- use_module(library(random)).
 :- use_module(library(statistics)).
 
-/* LIGAÇÕES */
-percurso(l1, l8).
-percurso(l1, l7).
-percurso(l1, l6).
-percurso(l1, l5).
-percurso(l1, l3).
-percurso(l8, l3).
-percurso(l8, l7).
-percurso(l7, l6).
-percurso(l7, l2).      
-percurso(l6, l2).     
-percurso(l5, l2).     
-percurso(l3, l4).     
-percurso(l4, l2). 
-  
-/* CUSTO ALOJAMENTO */
-custo(l1, 50).
-custo(l3, 240).
-custo(l4, 150).
-custo(l5, 400).
-custo(l6, 70).
-custo(l7, 30).
-custo(l8, 100).
+%inicio
+initial([l1]). % initial city
 
-/* DISTÂNCIA ENTRE PONTOS */
-distancia(l1, l8, 55).
-distancia(l1, l7, 34).
-distancia(l1, l6, 55).
-distancia(l1, l5, 100).
-distancia(l1, l3, 25).
-distancia(l8, l3, 0).    
-distancia(l8, l7, 25).
-distancia(l7, l6, 15).
-distancia(l7, l2, 0).     
-distancia(l6, l2, 30).     
-distancia(l5, l2, 25).     
-distancia(l3, l4, 40).     
-distancia(l4, l2, 20). 
-  
-/* caminho */
-caminho(X,Z,Caminho):-caminho(X,Z,[X],Caminho).
-caminho(X,X,Caminho,Caminho).
-caminho(X,Z,Visitado,Caminho)
-:- percurso(X,Y),
-\+ member(Y,Visitado),
-caminho(Y,Z,[Y | Visitado],Caminho).
+%fim
+goal(X):- member(l1,X),member(l2,X). % destination city
+
+% --- knowledge base:
+% road(Origin,Destination,Distance-in-km)
+% data collected from: https://pt.distance.to/
+road(l1, l8, 55).
+road(l1, l7, 34).
+road(l1, l6, 55).
+road(l1, l5, 100).
+road(l1, l3, 25).
+road(l8, l3, 0).    
+road(l8, l7, 25).
+road(l7, l6, 15).
+road(l7, l2, 0).     
+road(l6, l2, 30).     
+road(l5, l2, 25).     
+road(l3, l4, 40).     
+road(l4, l2, 20).  
+
+% travel(City1,City2,distance):
+travel(X,Y,KM):-(road(X,Y,KM);road(Y,X,KM)). % true if road or symmetrical
+
+% state transition rule s/2: s(City1,City2)
+s(L1,L2):- last(L1,N1),travel(N1,N2,_),append(L1,[N2],L2). % link s(O,D,Dist) with s(O,D)
+
+% evaluation function: (sum of distances for all pairs)
+eval([_],1).
+eval([City1,City2|R],DS):- 
+	travel(City1,City2,D),
+	eval([City2|R],DR),
+	DS is D+DR.
 
 
-/* caminho com menor custo */ 
-caminhobarato(X,Y,C):-caminho(X,Y,C), 
-maisbarato(X,Y,C).  
+% execute and show a search method result:
+run(Method):- search(Method,Par,S),
+	      write('method:'),write(Method),writepar(Par),nl,
+              write('solution:'),write(S),nl,
+	      length(S,N),N1 is N-1,write('solution steps:'),write(N1),nl,
+              last(S,LS),
+              eval(LS,T),write('distance:'),write(T).			  
+% write parameter (if any):
+writepar(X):- integer(X),write(' par:'),write(X). % write X
+writepar(_). % do not write X
 
-maisbarato(X,Y,C):- custo_percurso(C,NC),!,
-\+ menorcusto(X,Y,NC).
+% breadth first; adapted (Bratko,2012)
 
-menorcusto(X,Y,NC):- caminho(X,Y,C1),
-custo_percurso(C1,NC1),
-NC1<NC, NC1 =< 450.
+breadthfirst( [ [Node | Path] | _] - _, [Node | Path] )  :-
+  goal( Node).
 
-/* custo do percurso */
-custo_percurso([_],0).
-custo_percurso([_,Y|Z],Total):- custo(Y, T1),
-  custo_percurso([Y|Z],T2), Total is T1 + T2. 
+breadthfirst( [Path | Paths] - Z, Solution)  :-
+  extend( Path, NewPaths),
+  append( NewPaths, Z1, Z),   % Add NewPaths at end
+  Paths \== Z1,               % Set of candidates not empty
+  breadthfirst( Paths - Z1, Solution).
 
+extend( [Node | Path], NewPaths)  :-
+  findall( [NewNode, Node | Path],
+           ( s(Node,NewNode), \+ member(NewNode, [Node | Path])),
+           NewPaths).
 
-/* caminho com menos distância */
-caminhocurto(X,Y,C):-caminho(X,Y,C), 
-maiscurto(X,Y,C).  
+% 3 depth-first methods; adapted from (Bratko, 2012)
 
-maiscurto(X,Y,C):- distancia_percurso(C,NC),!,
-\+ menordistancia(X,Y,NC).
+% depthfirst( Path, Node, Solution):
+%   extending the path [Node | Path] to a goal gives Solution
+depthfirst( Path, Node, [Node | Path])  :-
+   goal(Node).
 
-menordistancia(X,Y,NC):- caminho(X,Y,C1),
-distancia_percurso(C1,NC1),
-NC1<NC. 
+depthfirst( Path, Node, Sol)  :-
+  s(Node, Node1),
+  \+ member( Node1, Path),            	% Prevent a cycle
+  depthfirst( [Node | Path], Node1, Sol).
 
-/* distancia do percurso */
-distancia_percurso([_],0).
-distancia_percurso([X,Y|Z], Soma):- distancia(Y,X, S1),
-distancia_percurso([Y|Z],S2), Soma is S1 + S2.
+% Maxdepth depth first:
+% depthfirst2( Node, Solution, Maxdepth):
+%   Solution is a path, not longer than Maxdepth, from Node to a goal
+depthfirst2( Node, [Node], _)  :-
+   goal( Node).
 
+depthfirst2( Node, [Node | Sol], Maxdepth)  :-
+   Maxdepth > 0,
+   s( Node, Node1),
+   Max1 is Maxdepth - 1,
+   depthfirst2( Node1, Sol, Max1).
 
-/* trajeto */
-trajeto(X,Y,T):- caminho(X,Y,T), melhor(X,Y,T).
+% Iterative Deepening: Node, Solution, StartN, FinalN
+iterativedeepening(Node,Solution,N,N):- 
+	depthfirst2(Node,Solution,N).
+iterativedeepening(Node,Solution,N,NR):- 
+        %N < Maxdepth, % assure this condition when backtracking
+	N1 is N+1,
+        % write('n:'),write(N),nl, % verbose if needed
+        iterativedeepening(Node,Solution,N1,NR).
 
-melhor(X,Y,T):- solucao(T,MT,_,_),!,
-  \+ otimizado(X,Y,MT).
+search(Method,Par,Solution,Moves):- 
+	initial(S0),
+	execute(Method,Par,S0,Solution1),
+	ifreverseneeded(Method,Solution1,Solution),
+        get_moves(Solution,Moves).
 
-/* melhor trajeto */ 
-otimizado(X,Y,MT):- caminho(X,Y,T1),
-  solucao(T1,MT1,_,_),
-  MT1<MT.
+% second variant, no Move transition is defined, 
+% use this method if only s(S1,S2) is defined:
+search(Method,Par,Solution):- 
+       initial(S0),
+       execute(Method,Par,S0,Solution1),
+       ifreverseneeded(Method,Solution1,Solution).
 
-/* solução */ 
-solucao(T1,MT1,P,K):- custo_percurso(T1,K), distancia_percurso(T1,P), MT1 is K/P.
+% third option, no Move transition is defined, no reverse is executed, 
+%search3(Method,Par,Solution):- 
+%        initial(S0),
+%	execute(Method,Par,S0,Solution).
 
+% depthfirst2 and iterativedeepening do not need a reverse:
+ifreverseneeded(depthfirst2,S,S):-!.        % cut is needed because of backtracking
+ifreverseneeded(iterativedeepening,S,S):-!. % cut is needed because of backtracking
+ifreverseneeded(_,S,S1):- reverse(S,S1). % other methods
+
+% get all moves for a particular solution:
+% assuming that a particular Solution was found, 
+% returns Moves - the list of actions/moves to result in this Solution:
+get_moves([_],[]).
+get_moves([N1,N2|RN],[Move|RM]):- 
+	s(N1,Move,N2), 
+	get_moves([N2|RN],RM).
+
+% links execute with the type of search method used:
+execute(depthfirst,_,Node,Solution):- 
+	depthfirst([],Node,Solution).
+execute(depthfirst2,Maxdepth,Node,Solution):- 
+	depthfirst2(Node,Solution,Maxdepth).
+% returns N, which is found by iterativedeepening
+execute(iterativedeepening,N,Node,Solution):- 
+	iterativedeepening(Node,Solution,1,N). 
+execute(breadthfirst,_,Start,Solution):- 
+	breadthfirst([ [Start] | Z] - Z,Solution).
+
+% execute 3 example searches:
+q1:- run(depthfirst).
+q2:- run(iterativedeepening).
+q3:- run(breadthfirst).
   </script>
 
 <script>
   function displayRadioValue(X) {
-    switch (X) {
-      case 'inicio':
-        var ele = document.getElementsByName('ponto_partida');
-
+        var ele = document.getElementsByName('metodo');
         for (i = 0; i < ele.length; i++) {
           if (ele[i].checked)
             return ele[i].value;
         }
-        break;
-      case 'fim':
-        var ele = document.getElementsByName('ponto_chegada');
-
-        for (i = 0; i < ele.length; i++) {
-          if (ele[i].checked)
-            return ele[i].value;
-        }
-        break;
-      case 'opcao':
-        var ele = document.getElementsByName('ponto');
-
-        for (i = 0; i < ele.length; i++) {
-          if (ele[i].checked)
-            return ele[i].value;
-        }
-        break;
-    }
-
   }
 </script>
 
 <script type="text/javascript">
   // Show the likes of a person
   function caminho() {
-    var inicio = displayRadioValue('inicio');
-    var fim = displayRadioValue('fim');
-    var opcao = displayRadioValue('opcao');
+    var metodo = displayRadioValue('inicio');
     var goal;
 
-    switch (opcao) {
-      case 'distancia':
-        goal = "caminhocurto(" + inicio + ", " + fim + ", X).";
-        break;
-      case 'custo':
-        goal = "caminhobarato(" + inicio + ", " + fim + ", X).";
-        break;
-      case 'custoedistancia':
-        goal = "trajeto(" + inicio + ", " + fim + ", X).";
-        break;
-    }
 
     // Create session
     var session = pl.create();
     // Session consult
-    session.consult("caminho.pl");
+    session.consult("hillClimbing.pl");
     // Query goal
-    session.query(goal);
+    session.query("run("+metodo+").");
     // Find answers
-    session.answer(function (x) { 
+    session.answer(function (x) {
       resposta = pl.format_answer(x);
-      document.getElementById("minhaDiv").innerHTML = "Deve seguir por: " + resposta;
+      document.getElementById("minhaDiv").innerHTML = resposta;
       document.getElementById("minhaDiv").style.display = 'block';
     });
   }
